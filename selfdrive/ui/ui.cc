@@ -354,6 +354,19 @@ static void update_extras(UIState *s)
    UIScene &scene = s->scene;
    SubMaster &sm = *(s->sm);
 
+   if (sm.updated("carState"))
+   {
+    auto data = sm["carState"].getCarState();
+    scene.car_state = sm["carState"].getCarState();
+    scene.brakePress = data.getBrakePressed();
+    scene.brakeLights = data.getBrakeLights();
+//깜박이 추가
+    if(scene.leftBlinker!=data.getLeftBlinker() || scene.rightBlinker!=data.getRightBlinker())
+      scene.blinker_blinkingrate = 100;
+    scene.leftBlinker = data.getLeftBlinker();
+    scene.rightBlinker = data.getRightBlinker();
+//깜박이 종료 
+   }
    if(sm.updated("carControl"))
     scene.car_control = sm["carControl"].getCarControl();
 
