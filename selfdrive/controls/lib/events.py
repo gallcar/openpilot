@@ -470,7 +470,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   },
 
   EventName.cameraMalfunction: {
-    ET.PERMANENT: NormalPermanentAlert("카메라 오작동", "장치를 점검하세요"),
+    ET.PERMANENT: NormalPermanentAlert("", ""),
   },
 
   EventName.gpsMalfunction: {
