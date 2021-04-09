@@ -31,7 +31,7 @@ class LongitudinalMpc():
 
     # scc smoother
     self.cruise_gap = 0
-    self.auto_tr = False
+    self.auto_tr = True
 
   def publish(self, pm):
     if LOG_MPC:
@@ -103,7 +103,7 @@ class LongitudinalMpc():
     # scc smoother
 
     if self.auto_tr:
-      TR = interp(v_ego, [3., 30.], [1.2, 2.2])
+      TR = interp(v_ego, [3., 27.7], [1.0, 2.0]) #10.8킬로에 1.0 100킬로에 2.0
     else:
       cruise_gap = int(clip(CS.cruiseGap, 1., 4.))
       TR = interp(float(cruise_gap), [1., 2., 3., 4.], [1.2, 1.5, 1.8, 2.2])
