@@ -107,6 +107,11 @@ static void draw_lead(UIState *s, int idx) {
     color = nvgRGBA(112, 128, 255, 255);
 
   draw_chevron(s, x, y, sz, nvgRGBA(201, 34, 49, fillAlpha), color);
+
+  if(lead.getRadar()) {
+    nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
+    ui_draw_text(s, x, y + sz/2.f, "R", 18 * 2.5, COLOR_WHITE, "sans-semibold");
+  }
 }
 
 static void ui_draw_line(UIState *s, const line_vertices_data &vd, NVGcolor *color, NVGpaint *paint) {
@@ -427,32 +432,35 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w )
     bb_ry = bb_y + bb_h;
   }
 
-   // add battery temperature
-  if (UI_FEATURE_RIGHT_BATTERY_TEMP) {
+  float ambientTemp = scene->deviceState.getAmbientTempC();
+
+   // add ambient temperature
+  if (UI_FEATURE_RIGHT_AMBIENT_TEMP) {
+
     char val_str[16];
     char uom_str[6];
     NVGcolor val_color = nvgRGBA(255, 255, 255, 200);
 
-    float batteryTemp = scene->deviceState.getBatteryTempC();
-
-    if(batteryTemp > 40.f) {
+    if(ambientTemp > 40.f) {
       val_color = nvgRGBA(255, 188, 3, 200);
     }
-    if(batteryTemp > 50.f) {
+    if(ambientTemp > 50.f) {
       val_color = nvgRGBA(255, 0, 0, 200);
     }
-    // temp is alway in C * 1000
-    snprintf(val_str, sizeof(val_str), "%.1f°", batteryTemp);
+    snprintf(val_str, sizeof(val_str), "%.1f°", ambientTemp);
     snprintf(uom_str, sizeof(uom_str), "");
-    bb_h +=bb_ui_draw_measure(s,  val_str, uom_str, "BAT TEMP",
+    bb_h +=bb_ui_draw_measure(s,  val_str, uom_str, "AMBIENT",
         bb_rx, bb_ry, bb_uom_dx,
         val_color, lab_color, uom_color,
         value_fontSize, label_fontSize, uom_fontSize );
     bb_ry = bb_y + bb_h;
   }
 
+  float batteryTemp = scene->deviceState.getBatteryTempC();
+  bool batteryless =  batteryTemp < -20;
+
   // add battery level
-    if(UI_FEATURE_RIGHT_BATTERY_LEVEL) {
+    if(UI_FEATURE_RIGHT_BATTERY_LEVEL && !batteryless) {
     char val_str[16];
     char uom_str[6];
     char bat_lvl[4] = "";
@@ -645,6 +653,10 @@ static void bb_ui_draw_debug(UIState *s)
 
     y += height;
     snprintf(str, sizeof(str), "%.3f (%.3f/%.3f)", aReqValue, aReqValueMin, aReqValueMax);
+    ui_draw_text(s, text_x, y, str, 22 * 2.5, textColor, "sans-regular");
+
+    y += height;
+    snprintf(str, sizeof(str), "Light: %.3f", scene->light_sensor);
     ui_draw_text(s, text_x, y, str, 22 * 2.5, textColor, "sans-regular");
 }
 
