@@ -48,7 +48,7 @@ EventName = car.CarEvent.EventName
 
 class Controls:
   def __init__(self, sm=None, pm=None, can_sock=None):
-    config_realtime_process(3, Priority.CTRL_HIGH)
+    config_realtime_process(7 if TICI else 3, Priority.CTRL_HIGH)
 
     # Setup sockets
     self.pm = pm
@@ -402,12 +402,9 @@ class Controls:
     #sr = max(params.steerRatio, 0.1)
 
     if ntune_isEnabled('useLiveSteerRatio'):
-      sr = max(self.sm['liveParameters'].steerRatio, 0.1)
+      sr = max(params.steerRatio, 0.1)
     else:
-      if self.CP.carName in [CAR.GENESIS_G80]:
-        sr = interp(abs(self.angle_steers_des), [5., 15.], [13., 17.])
-      else:
-        sr = max(ntune_get('steerRatio'), 0.1)
+      sr = max(ntune_get('steerRatio'), 0.1)
 
     self.VM.update_params(x, sr)
 
