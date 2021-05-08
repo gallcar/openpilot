@@ -258,7 +258,7 @@ static void update_alert(UIState *s) {
   }
 
   // Handle controls timeout
-  if (scene.deviceState.getStarted() && (s->sm->frame - scene.started_frame) > 10 * UI_FREQ) {
+  if (scene.deviceState.getStarted() && (s->sm->frame - scene.started_frame) > 15 * UI_FREQ) {
     const uint64_t cs_frame = s->sm->rcv_frame("controlsState");
     if (cs_frame < scene.started_frame) {
       // car is started, but controlsState hasn't been seen at all
