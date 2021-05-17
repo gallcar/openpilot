@@ -9,7 +9,7 @@ STOPPING_TARGET_SPEED_OFFSET = 0.01
 STARTING_TARGET_SPEED = 0.5
 BRAKE_THRESHOLD_TO_PID = 0.2
 
-BRAKE_STOPPING_TARGET = 0.5  # apply at least this amount of brake to maintain the vehicle stationary
+BRAKE_STOPPING_TARGET = 0.6  # apply at least this amount of brake to maintain the vehicle stationary
 
 RATE = 100.0
 
@@ -26,7 +26,7 @@ def long_control_state_trans(active, long_control_state, v_ego, v_target, v_pid,
   starting_condition = v_target > STARTING_TARGET_SPEED and not cruise_standstill
 
   if d_rel > 0.:
-    stopping_condition = stopping_condition or (v_ego < 1.0 and d_rel < 4.)
+    stopping_condition = stopping_condition or (v_ego < 2. and d_rel < 4.)
     starting_condition = starting_condition and d_rel > 3.3
 
   if not active:
@@ -113,7 +113,7 @@ class LongControl():
       deadzone = interp(v_ego_pid, CP.longitudinalTuning.deadzoneBP, CP.longitudinalTuning.deadzoneV)
 
       if d_rel > 0.:
-        a_target *= interp(d_rel, [10., 25., 70.], [1.0, 0.9, 0.7])
+        a_target *= interp(d_rel, [10., 25., 70.], [1.0, 0.8, 0.6])
 
       output_gb = self.pid.update(self.v_pid, v_ego_pid, speed=v_ego_pid, deadzone=deadzone, feedforward=a_target, freeze_integrator=prevent_overshoot)
 

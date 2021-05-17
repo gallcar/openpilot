@@ -187,7 +187,7 @@ class LateralPlanner():
       self.LP.rll_prob *= self.lane_change_ll_prob
     if self.use_lanelines:
       d_path_xyz = self.LP.get_d_path(v_ego, self.t_idxs, self.path_xyz)
-      heading_cost = interp(v_ego, [1.5, 5.], [MPC_COST_LAT.HEADING*2., MPC_COST_LAT.HEADING])
+      heading_cost = interp(v_ego, [1.5, 2.0], [MPC_COST_LAT.HEADING*2., MPC_COST_LAT.HEADING])
       self.libmpc.set_weights(MPC_COST_LAT.PATH, heading_cost, ntune_get('steerRateCost'))
     else:
       d_path_xyz = self.path_xyz
@@ -214,7 +214,7 @@ class LateralPlanner():
     self.cur_state.curvature = interp(DT_MDL, self.t_idxs[:MPC_N + 1], self.mpc_solution.curvature)
 
     # TODO this needs more thought, use .2s extra for now to estimate other delays
-    delay = ntune_get('steerActuatorDelay') + .2
+    delay = ntune_get('steerActuatorDelay') + .1
     current_curvature = self.mpc_solution.curvature[0]
     psi = interp(delay, self.t_idxs[:MPC_N + 1], self.mpc_solution.psi)
     next_curvature_rate = self.mpc_solution.curvature_rate[0]

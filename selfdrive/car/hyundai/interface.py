@@ -44,46 +44,62 @@ class CarInterface(CarInterfaceBase):
       if fw.ecu == "eps" and b"," in fw.fwVersion:
         eps_modified = True
 
-    ret.maxSteeringAngleDeg = 90.
+    ret.maxSteeringAngleDeg = 120.
 
     # lateral
     ret.lateralTuning.init('lqr')
 
-    ret.lateralTuning.lqr.scale = 1650.
+    ret.lateralTuning.lqr.scale = 1680.
     ret.lateralTuning.lqr.ki = 0.01
-    ret.lateralTuning.lqr.dcGain = 0.00275
+    ret.lateralTuning.lqr.dcGain = 0.002858
 
     ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
     ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
     ret.lateralTuning.lqr.c = [1., 0.]
-    ret.lateralTuning.lqr.k = [-110., 451.]
-    ret.lateralTuning.lqr.l = [0.33, 0.318]
+    ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+    ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
 
-    ret.steerRatio = 16.5
-    ret.steerActuatorDelay = 0.1
-    ret.steerLimitTimer = 2.5
-    ret.steerRateCost = 0.4
+    ret.steerRatio = 17.2
+    ret.steerActuatorDelay = 0.0
+    ret.steerLimitTimer = 2.0
+    ret.steerRateCost = 0.552
     ret.steerMaxBP = [0.]
     ret.steerMaxV = [1.5]
 
     # longitudinal
-    ret.longitudinalTuning.kpBP = [0, 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 40. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS]
-    ret.longitudinalTuning.kpV = [0.95, 0.75, 0.57, 0.45, 0.4, 0.36]
-    ret.longitudinalTuning.kiBP = [0.]
-    ret.longitudinalTuning.kiV = [0.015]
-    ret.longitudinalTuning.kf = 0.85
-    ret.longitudinalTuning.deadzoneBP = [0., 100. * CV.KPH_TO_MS]
-    ret.longitudinalTuning.deadzoneV = [0., 0.015]
+#    ret.longitudinalTuning.kpBP = [0, 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 40. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS]
+#    ret.longitudinalTuning.kpV = [0.95, 0.75, 0.59, 0.46, 0.4, 0.36]
+#    ret.longitudinalTuning.kiBP = [0.]
+#    ret.longitudinalTuning.kiV = [0.015]
+#    ret.longitudinalTuning.kf = 0.7
+#    ret.longitudinalTuning.deadzoneBP = [0., 100. * CV.KPH_TO_MS]
+#    ret.longitudinalTuning.deadzoneV = [0., 0.015]
 
-    ret.gasMaxBP = [0., 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 130. * CV.KPH_TO_MS]
-    ret.gasMaxV = [0.43, 0.3, 0.22, 0.14, 0.11]
+#    ret.gasMaxBP = [0., 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 130. * CV.KPH_TO_MS]
+#    ret.gasMaxV = [0.42, 0.28, 0.20, 0.14, 0.11]
 
-    ret.brakeMaxBP = [0.]
-    ret.brakeMaxV = [1.35]
+#    ret.brakeMaxBP = [0.]
+#    ret.brakeMaxV = [1.35]
 
-    ret.stoppingBrakeRate = 0.15  # brake_travel/s while trying to stop
-    ret.startingBrakeRate = 1.0  # brake_travel/s while releasing on restart
-    ret.startAccel = 1.3
+#    ret.stoppingBrakeRate = 0.1  # brake_travel/s while trying to stop
+#    ret.startingBrakeRate = 1.0  # brake_travel/s while releasing on restart
+#    ret.startAccel = 1.3
+    ret.longitudinalTuning.kpBP = [0., 15. * CV.KPH_TO_MS, 35. * CV.KPH_TO_MS, 50. * CV.KPH_TO_MS, 55. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS]
+    ret.longitudinalTuning.kpV = [0.61, 0.6651, 0.6742, 0.63251, 0.455, 0.45, 0.45]
+    ret.longitudinalTuning.kiBP = [0., 126.*CV.KPH_TO_MS]
+    ret.longitudinalTuning.kiV = [0.013, 0.02]
+    ret.longitudinalTuning.kf = 0.5
+    ret.longitudinalTuning.deadzoneBP = [0., 50.*CV.KPH_TO_MS, 100.*CV.KPH_TO_MS]
+    ret.longitudinalTuning.deadzoneV = [0., 0., 0.015]
+
+    ret.gasMaxBP = [0., 5.*CV.KPH_TO_MS, 10.*CV.KPH_TO_MS, 30.*CV.KPH_TO_MS, 36.*CV.KPH_TO_MS, 37.*CV.KPH_TO_MS, 48.*CV.KPH_TO_MS, 55.*CV.KPH_TO_MS, 70.*CV.KPH_TO_MS, 100.*CV.KPH_TO_MS]
+    ret.gasMaxV = [0.1, 0.4426, 0.5662, 0.549, 0.4183, 0.3742, 0.1804, 0.13, 0.12, 0.1] 
+    ret.brakeMaxBP = [0., 10.*CV.KPH_TO_MS, 29.*CV.KPH_TO_MS, 30.*CV.KPH_TO_MS, 50*CV.KPH_TO_MS, 65*CV.KPH_TO_MS]
+    ret.brakeMaxV = [0.22, 0.55325, 0.84869, 0.85069, 0.84579, 0.8377]
+
+    ret.stoppingBrakeRate = 0.155  # brake_travel/s while trying to stop
+    ret.startingBrakeRate = 0.99  # brake_travel/s while releasing on restart
+    ret.startAccel = 1.1
 
     # genesis
     if candidate == CAR.GENESIS:
