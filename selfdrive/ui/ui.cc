@@ -270,7 +270,7 @@ static void update_extras(UIState *s)
    if (sm.updated("carState"))
    {
     auto data = sm["carState"].getCarState();
-    scene.car_state = sm["carState"].getCarState();
+    auto car_state = (*s->sm)["carState"].getCarState();
     scene.brakePress = data.getBrakePressed();
     scene.brakeLights = data.getBrakeLights();
 //깜박이 추가
