@@ -324,7 +324,7 @@ QWidget * community_panel() {
                                             ));
   toggles_list->addWidget(horizontal_line());
   toggles_list->addWidget(new ParamControl("FuseWithStockScc",
-                                            "롱컨 사용 시 순정 퓨전.",
+                                            "롱컨 사용 시 순정 퓨전",
                                             "롱컨트롤 사용 시 순정의 도움을 받습니다.",
                                             "../assets/offroad/icon_road.png"
                                             ));
