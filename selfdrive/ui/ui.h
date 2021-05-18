@@ -199,7 +199,7 @@ typedef struct UIState {
 
   //
   bool show_debug_ui;
-  bool Fuse_With_StockScc;
+
   TouchState touch;
 
 } UIState;
