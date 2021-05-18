@@ -210,8 +210,6 @@ static void update_params(UIState *s) {
     scene.is_metric = params.getBool("IsMetric");
   } else if (frame % (7*UI_FREQ) == 0) {
 	s->show_debug_ui = params.getBool("ShowDebugUI");
-  } else if (frame % (7*UI_FREQ) == 0) {
-	s->Fuse_With_StockScc = params.getBool("FuseWithStockScc");
   }
 }
 
