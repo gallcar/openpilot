@@ -802,7 +802,7 @@ static void ui_draw_vision_speed(UIState *s) {
   const int viz_speed_x = viz_rect.centerX() - viz_speed_w/2;
   const int y = -30;
 
-  const float speed = std::max(0.0, s->scene.controls_state.getCluSpeedMs() * (s->scene.is_metric ? 3.6 : 2.2369363));
+  const float speed = std::max(0.0, (*s->sm)["controlsState"].getControlsState().getCluSpeedMs() * (s->scene.is_metric ? 3.6 : 2.2369363));
   const std::string speed_str = std::to_string((int)std::nearbyint(speed));
 
   NVGcolor val_color = COLOR_WHITE;
