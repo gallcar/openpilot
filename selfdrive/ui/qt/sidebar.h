@@ -46,9 +46,9 @@ private:
   const QColor danger_color = QColor(201, 34, 49);
 
   Params params;
-  QString connect_str = "¿ÀÇÁ¶óÀÎ";
+  QString connect_str = "ì—°ê²°ì•ˆë¨";
   QColor connect_status = warning_color;
-  QString panda_str = "ÆÇ´Ù\n¿¬°á¾ÈµÊ";
+  QString panda_str = "íŒë‹¤\nì—°ê²°ì•ˆë¨";
   QColor panda_status = warning_color;
   int temp_val = 0;
   QColor temp_status = warning_color;
