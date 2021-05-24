@@ -46,9 +46,9 @@ private:
   const QColor danger_color = QColor(201, 34, 49);
 
   Params params;
-  QString connect_str = "OFFLINE";
+  QString connect_str = "연결안됨";
   QColor connect_status = warning_color;
-  QString panda_str = "NO\nPANDA";
+  QString panda_str = "판다\n연결안됨";
   QColor panda_status = warning_color;
   int temp_val = 0;
   QColor temp_status = warning_color;
