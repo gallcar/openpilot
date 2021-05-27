@@ -104,7 +104,7 @@ class CarInterface(CarInterfaceBase):
 
     # BOXKON Longcontrol Params - For Fusion
     ret.longitudinalTuning.kpBP = [0, 10. * CV.KPH_TO_MS, 20. * CV.KPH_TO_MS, 40. * CV.KPH_TO_MS, 70. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS, 130. * CV.KPH_TO_MS]
-    ret.longitudinalTuning.kpV = [0.97, 0.80, 0.60, 0.45, 0.38, 0.32, 0.20]
+    ret.longitudinalTuning.kpV = [0.67, 0.65, 0.60, 0.45, 0.38, 0.32, 0.20]
     ret.longitudinalTuning.kiBP = [0., 30. * CV.KPH_TO_MS, 60. * CV.KPH_TO_MS,]
     ret.longitudinalTuning.kiV = [0.01315, 0.015, 0.0155]
     ret.longitudinalTuning.kf = 0.9
