@@ -28,7 +28,7 @@ SshControl::SshControl() : AbstractControl("SSH Keys", "경고: 이 버튼을 �
   hlayout->addWidget(&btn);
 
   QObject::connect(&btn, &QPushButton::released, [=]() {
-    if (btn.text() == "ADD") {
+    if (btn.text() == "추가") {
       QString username = InputDialog::getText("Enter your GitHub username");
       if (username.length() > 0) {
         btn.setText("LOADING");
