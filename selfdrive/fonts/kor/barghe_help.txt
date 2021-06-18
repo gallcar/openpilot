@@ -15,6 +15,9 @@
 $ ./installer.sh
 
 
+** permission denied 때 
 
+chmod 744 installer.sh
 
+./installer.sh 실행
 
