@@ -50,9 +50,9 @@ private:
   const QColor warning_color = QColor(218, 202, 37);
   const QColor danger_color = QColor(201, 34, 49);
 
-  QString connect_str = "OFFLINE";
+  QString connect_str = "연결안됨";
   QColor connect_status = warning_color;
-  QString panda_str = "NO\nPANDA";
+  QString panda_str = "판다\n연결안됨";
   QColor panda_status = warning_color;
   int temp_val = 0;
   QColor temp_status = warning_color;

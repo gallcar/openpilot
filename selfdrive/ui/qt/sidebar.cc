@@ -62,7 +62,7 @@ void Sidebar::updateState(const UIState &s) {
   setProperty("wifiAddr", deviceState.getWifiIpAddress().cStr());
 
   bool online = net_type != network_type[cereal::DeviceState::NetworkType::NONE];
-  setProperty("connectStr",  online ? "ONLINE" : "OFFLINE");
+  setProperty("connectStr",  online ? "연결됨" : "연결안됨");
   setProperty("connectStatus", online ? good_color : danger_color);
 
   QColor tempStatus = danger_color;
@@ -75,11 +75,11 @@ void Sidebar::updateState(const UIState &s) {
   setProperty("tempStatus", tempStatus);
   setProperty("tempVal", (int)deviceState.getAmbientTempC());
 
-  QString pandaStr = "VEHICLE\nONLINE";
+  QString pandaStr = "판다\n연결됨";
   QColor pandaStatus = good_color;
   if (s.scene.pandaType == cereal::PandaState::PandaType::UNKNOWN) {
     pandaStatus = danger_color;
-    pandaStr = "NO\nPANDA";
+    pandaStr = "판다\n연결안됨";
   } else if (Hardware::TICI() && s.scene.started) {
     pandaStr = QString("SATS %1\nACC %2").arg(s.scene.satelliteCount).arg(fmin(10, s.scene.gpsAccuracy), 0, 'f', 2);
     pandaStatus = sm["liveLocationKalman"].getLiveLocationKalman().getGpsOK() ? good_color : warning_color;
@@ -120,7 +120,7 @@ void Sidebar::paintEvent(QPaintEvent *event) {
 
   // metrics
   configFont(p, "Open Sans", 35, "Regular");
-  drawMetric(p, "TEMP", QString("%1°C").arg(temp_val), temp_status, 338);
+  drawMetric(p, "이온 온도", QString("%1°C").arg(temp_val), temp_status, 338);
   drawMetric(p, panda_str, "", panda_status, 518);
-  drawMetric(p, "CONNECT\n" + connect_str, "", connect_status, 676);
+  drawMetric(p, "네트워크\n" + connect_str, "", connect_status, 676);
 }
