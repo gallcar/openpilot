@@ -106,7 +106,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 2290
       ret.wheelbase = 3.45
       ret.centerToFront = ret.wheelbase * 0.4
-	  ret.maxSteeringAngleDeg = 120.
+      ret.maxSteeringAngleDeg = 120.
     elif candidate == CAR.GENESIS_G90:
       ret.mass = 2150
       ret.wheelbase = 3.16
