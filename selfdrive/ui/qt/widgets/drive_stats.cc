@@ -40,9 +40,9 @@ DriveStats::DriveStats(QWidget* parent) : QWidget(parent) {
     main_layout->addWidget(labels.distance = numberLabel(), row, 1, Qt::AlignLeft);
     main_layout->addWidget(labels.hours = numberLabel(), row, 2, Qt::AlignLeft);
 
-    main_layout->addWidget(unitLabel("DRIVES"), row + 1, 0, Qt::AlignLeft);
+    main_layout->addWidget(unitLabel("주행수"), row + 1, 0, Qt::AlignLeft);
     main_layout->addWidget(labels.distance_unit = unitLabel(getDistanceUnit()), row + 1, 1, Qt::AlignLeft);
-    main_layout->addWidget(unitLabel("HOURS"), row + 1, 2, Qt::AlignLeft);
+    main_layout->addWidget(unitLabel("주행시간"), row + 1, 2, Qt::AlignLeft);
   };
 
   add_stats_layouts("전체 주행", all_);
@@ -60,10 +60,10 @@ DriveStats::DriveStats(QWidget* parent) : QWidget(parent) {
 
 void DriveStats::updateStats() {
   auto update = [=](const QJsonObject& obj, StatsLabels& labels) {
-    labels.routes->setText(QString::number((int)obj["주행수"].toDouble()));
-    labels.distance->setText(QString::number(int(obj["주행거리"].toDouble() * (metric_ ? MILE_TO_KM : 1))));
+    labels.routes->setText(QString::number((int)obj["routes"].toDouble()));
+    labels.distance->setText(QString::number(int(obj["distance"].toDouble() * (metric_ ? MILE_TO_KM : 1))));
     labels.distance_unit->setText(getDistanceUnit());
-    labels.hours->setText(QString::number((int)(obj["주행시간"].toDouble() / 60)));
+    labels.hours->setText(QString::number((int)(obj["minutes"].toDouble() / 60)));
   };
 
   QJsonObject json = stats_.object();
