@@ -72,7 +72,7 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalTuning.kiBP = [0., 30. * CV.KPH_TO_MS, 60. * CV.KPH_TO_MS,]
     ret.longitudinalTuning.kiV = [0.0115, 0.015, 0.0155]
     ret.longitudinalTuning.kfBP = [50. * CV.KPH_TO_MS, 100. * CV.KPH_TO_MS]
-    ret.longitudinalTuning.kfV = [0.78, 0.2]
+    ret.longitudinalTuning.kfV = [0.78, 0.5]
     ret.longitudinalTuning.deadzoneBP = [0., 100. * CV.KPH_TO_MS]
     ret.longitudinalTuning.deadzoneV = [0., 0.015]
 
@@ -83,7 +83,7 @@ class CarInterface(CarInterfaceBase):
     ret.brakeMaxV = [0.3, 0.67, 0.855, 0.845, 0.835, 0.83]
     ret.stoppingBrakeRate = 0.15  # brake_travel/s while trying to stop
     ret.startingBrakeRate = 0.99  # brake_travel/s while releasing on restart
-    ret.startAccel = 1.4
+    ret.startAccel = 1.45
 
     # genesis
     if candidate == CAR.GENESIS:
