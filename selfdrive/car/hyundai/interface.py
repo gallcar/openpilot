@@ -245,7 +245,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.MOHAVE:
       ret.mass = 2250. + STD_CARGO_KG
       ret.wheelbase = 2.895
-	  ret.centerToFront = ret.wheelbase * 0.4
+      ret.centerToFront = ret.wheelbase * 0.4
 
     ret.radarTimeStep = 0.05
 
