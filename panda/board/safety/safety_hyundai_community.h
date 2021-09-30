@@ -17,9 +17,7 @@ const CanMsg HYUNDAI_COMMUNITY_TX_MSGS[] = {
   {905, 0, 8},  //   SCC14,  Bus 0
   {1186, 0, 8},  //   4a2SCC, Bus 0
   {790, 1, 8}, // EMS11, Bus 1
-  {912, 0, 7}, {912,1, 7}, // SPAS11, Bus 0, 1
-  {1268, 0, 8}, {1268,1, 8}, // SPAS12, Bus 0, 1
- };
+};
 
 // older hyundai models have less checks due to missing counters and checksums
 AddrCheckStruct hyundai_community_addr_checks[] = {
@@ -30,7 +28,6 @@ AddrCheckStruct hyundai_community_addr_checks[] = {
 };
 
 #define HYUNDAI_COMMUNITY_ADDR_CHECK_LEN (sizeof(hyundai_community_addr_checks) / sizeof(hyundai_community_addr_checks[0]))
-
 addr_checks hyundai_community_rx_checks = {hyundai_community_addr_checks, HYUNDAI_COMMUNITY_ADDR_CHECK_LEN};
 
 static int hyundai_community_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
@@ -293,7 +290,6 @@ static const addr_checks* hyundai_community_init(int16_t param) {
     current_board->set_can_mode(CAN_MODE_OBD_CAN2);
     puts("  MDPS or SCC on OBD2 CAN: setting can mode obd\n");
   }
-
   hyundai_community_rx_checks = (addr_checks){hyundai_community_addr_checks, HYUNDAI_COMMUNITY_ADDR_CHECK_LEN};
   return &hyundai_community_rx_checks;
 }
