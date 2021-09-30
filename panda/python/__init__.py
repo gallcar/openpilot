@@ -457,7 +457,7 @@ class Panda(object):
     self._handle.controlWrite(Panda.REQUEST_OUT, 0xdc, mode, 0, b'')
     if disable_checks:
       self.set_heartbeat_disabled()
-      #self.set_power_save(0)
+      self.set_power_save(0)
 
   def set_can_forwarding(self, from_bus, to_bus):
     # TODO: This feature may not work correctly with saturated buses
