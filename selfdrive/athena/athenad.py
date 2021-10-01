@@ -563,14 +563,12 @@ def main():
 
       handle_long_poll(ws)
     except (KeyboardInterrupt, SystemExit):
-      pass
+      break
     except (ConnectionError, TimeoutError, WebSocketException):
       conn_retries += 1
-      pass
       # params.delete("PrimeRedirected")
       # params.delete("LastAthenaPingTime")
     except socket.timeout:
-      pass
       # try:
       #   r = requests.get("http://api.retropilot.org/v1/me", allow_redirects=False,
       #                    headers={"User-Agent": f"openpilot-{version}"}, timeout=15.0)
@@ -579,14 +577,14 @@ def main():
       # except Exception:
       #   cloudlog.exception("athenad.socket_timeout.exception")
       # params.delete("LastAthenaPingTime")
-    # except Exception:
-    #   cloudlog.exception("athenad.main.exception")
+    except Exception:
+      cloudlog.exception("athenad.main.exception")
 
-    #   conn_retries += 1
+      conn_retries += 1
       # params.delete("PrimeRedirected")
       # params.delete("LastAthenaPingTime")
 
-    # time.sleep(backoff(conn_retries))
+    time.sleep(backoff(conn_retries))
 
 
 if __name__ == "__main__":
