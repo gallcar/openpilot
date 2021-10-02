@@ -61,14 +61,14 @@ class CarInterface(CarInterfaceBase):
     tire_stiffness_factor = 1.
 
     ret.gasMaxBP = [0.]    # m/s
-    ret.gasMaxV = [1.5]    # max gas allowed
+    ret.gasMaxV = [2.0]    # max gas allowed
     ret.brakeMaxBP = [0.]  # m/s
-    ret.brakeMaxV = [1.5]   # max brake allowed
+    ret.brakeMaxV = [3.5]   # max brake allowed
 
     ret.longitudinalTuning.kpBP = [0., 4., 9., 17., 23., 31.]
-    ret.longitudinalTuning.kpV = [1.3, 1.2, 1.0, 0.85, 0.6, 0.5]
+    ret.longitudinalTuning.kpV = [1.2, 1.0, 0.8, 0.65, 0.5, 0.4]
     ret.longitudinalTuning.kiBP = [0., 4., 9., 17., 23., 31.]
-    ret.longitudinalTuning.kiV = [0.35, 0.29, 0.27, 0.23, 0.17, 0.15]
+    ret.longitudinalTuning.kiV = [0.3, 0.24, 0.22, 0.18, 0.15, 0.13]
 
     ret.longitudinalTuning.deadzoneBP = [0., 4.]
     ret.longitudinalTuning.deadzoneV = [0., 0.1]
