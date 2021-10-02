@@ -7,7 +7,7 @@ Ecu = car.CarParams.Ecu
 
 # Steer torque limits
 class CarControllerParams:
-  MAX_GAS = 2.0
+  MAX_GAS = 1.05
   MAX_BRAKE = 3.5
   ACCEL_LOOKUP_BP = [-1., 0., MAX_GAS / MAX_BRAKE]
   ACCEL_LOOKUP_V = [-MAX_BRAKE, 0., MAX_GAS]
