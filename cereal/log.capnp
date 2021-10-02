@@ -1343,12 +1343,12 @@ struct LiveParametersData {
 }
 
 struct LiveMapData {
-  speedLimit @0 :Float32;
+  speedLimit @0 :Int32;
   speedLimitDistance @1 :Float32;
-  safetySign @2 :Float32;
+  safetySign @2 :Int32;
   roadCurvature @3 :Float32;
   turnInfo @4 :Int32;
-  distanceToTurn @5 :Int32;
+  distanceToTurn @5 :Float32;
   ts @6 :UInt64;
 
   mapValid @7 :Bool;
